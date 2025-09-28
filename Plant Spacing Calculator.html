@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Plant Spacing Calculator</title>
+<style>
+	body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+  .navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #000;
+    height: 60px;
+    width: 100%;
+    max-width: 1100px;
+    flex-shrink: 0;
+  }
+  .navbar-left {
+    display: flex;
+    align-items: center;
+    margin-left: 0;
+  }
+  .navbar-links {
+    display: flex;
+    gap: 60px;
+  }
+  .navbar-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+  }
+  .navbar-links a:hover {
+    color: rgb(2, 150, 0);
+  }
+  input[type=number]::-webkit-outer-spin-button,
+  input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type=number] {
+    -moz-appearance: textfield;
+    -webkit-appearance: none;   
+    appearance: none;
+    margin: 0;
+  }
+
+  /* Main card container */
+  main.card {
+    background-color: #111;
+    border: 2px solid white;
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 2rem 1rem;
+    max-width: 520px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  h1 {
+    margin-top: 0;
+    font-weight: 900;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+  }
+
+  input[type="number"] {
+    width: 100%;
+    padding: 0.4rem 0.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid white;
+    background: transparent;
+    color: white;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+  }
+
+  button {
+    width: 100%;
+    padding: 0.7rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    background-color: black;
+    border: 2px solid white;
+    color: white;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  button:hover {
+    background-color: rgb(2, 150, 0);
+    border-color: rgb(2, 150, 0);
+    color: black;
+  }
+
+  .result {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  @media (max-width: 600px) {
+    main.card {
+      margin: 1rem;
+      padding: 1.5rem;
+    }
+    .navbar-links {
+      gap: 30px;
+    }
+ }
+</style>
+</head>
+<body>
+<div class="navbar">
+  <div class="navbar-left">
+      <div class="navbar-links">
+            <a href="home.html">Home</a>
+            <a href="Services.html">Services</a>
+            <a href="About.html">About</a>
+            <a href="Contact.html">Contact</a>
+    </div>
+  </div>
+</div>
+<main class="card" role="main" aria-label="Plant Spacing Calculator">
+  <h1>Plant Spacing Calculator</h1>
+  
+  <label for="width">Garden Width (meters)</label>
+  <input type="number" id="width" min="0" step="0.01" placeholder="e.g. 3.5" inputmode="decimal" />
+
+  <label for="length">Garden Length (meters)</label>
+  <input type="number" id="length" min="0" step="0.01" placeholder="e.g. 5" inputmode="decimal" />
+
+  <label for="spacing">Recommended Plant Spacing (centimeters)</label>
+  <input type="number" id="spacing" min="0" step="0.1" placeholder="e.g. 30" inputmode="decimal" />
+
+  <button id="calculate">Calculate Plants</button>
+
+  <div class="result" id="result" aria-live="polite" aria-atomic="true"></div>
+</main>
+
+<script>
+  const widthEl = document.getElementById('width');
+  const lengthEl = document.getElementById('length');
+  const spacingEl = document.getElementById('spacing');
+  const calcBtn = document.getElementById('calculate');
+  const resultEl = document.getElementById('result');
+
+  function calculatePlants() {
+    const width = parseFloat(widthEl.value);
+    const length = parseFloat(lengthEl.value);
+    const spacingCm = parseFloat(spacingEl.value);
+
+    if (
+      isNaN(width) || width <= 0 ||
+      isNaN(length) || length <= 0 ||
+      isNaN(spacingCm) || spacingCm <= 0
+    ) {
+      resultEl.textContent = 'Please enter positive numbers for all fields.';
+      return;
+    }
+
+    const spacingM = spacingCm / 100;
+    const plantsAlongWidth = Math.floor(width / spacingM);
+    const plantsAlongLength = Math.floor(length / spacingM);
+    const totalPlants = plantsAlongWidth * plantsAlongLength;
+
+    if (totalPlants === 0) {
+      resultEl.textContent = 'With the given spacing and garden size, no plants fit.';
+    } else {
+      resultEl.textContent = `You can plant approximately ${totalPlants.toLocaleString()} plants.`;
+    }
+  }
+
+  calcBtn.addEventListener('click', calculatePlants);
+
+  [widthEl, lengthEl, spacingEl].forEach(el =>
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') calculatePlants();
+    })
+  );
+</script>
+</body>
+</html>

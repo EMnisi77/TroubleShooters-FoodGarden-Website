@@ -1,0 +1,157 @@
+:root{ color-scheme: dark; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #000;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      align-items: center;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #000000;
+      height: 60px;
+      flex-shrink: 0;
+      width: 100%;
+      max-width: 1100px;
+      box-sizing: border-box;
+    }
+
+    .navbar-left, .navbar-right {
+      display: flex;
+      align-items: center;
+      margin-left: 10px;
+    }
+
+    .navbar-links {
+      display: flex;
+      gap: 60px;
+    }
+
+    .navbar-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+    }
+    .navbar-links a:hover {
+      color: rgb(2, 150, 0);
+    }
+
+    /* Wrapper to fill remaining space and center main */
+    .content-wrapper {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 1100px;
+      box-sizing: border-box;
+      padding: 1rem;
+    }
+
+    main.card {
+      border: 2px solid #fff;
+      padding: 1rem;          
+      width: 100%;
+      max-width: 520px;
+      border-radius: 8px;
+      background: #232323;
+      color: #fff;
+      box-sizing: border-box;
+      height: 50vh;
+    }
+    h1 {
+      margin: 0 0 0.3rem 0;  
+      font-size: 1.25rem;
+      color: #fff;
+    }
+    p.lead {
+      margin: 0 0 0.6rem 0;  
+      font-size: 0.9rem;
+      color: #ddd;
+    }
+    .row {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .col {
+      flex: 1;
+    }
+    label {
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 0.35rem;
+      color: #ffffff;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 0.4rem 0.5rem; 
+      font-size: 1rem;
+      border: 1px solid #fff;
+      border-radius: 4px;
+      background: transparent;
+      color: #fff;
+      box-sizing: border-box;
+    }
+    input[type="number"]::placeholder {
+      color: #bbb;
+    }
+    .controls {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.4rem;   
+    }
+    button {
+      padding: 0.4rem 0.7rem; 
+      border: 1px solid #fff;
+      background: #000;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+    button.secondary {
+      background: #222;
+      color: #fff;
+    }
+    button#calc:hover {
+      background-color: #00a126;
+      border-color: #000000;
+    }
+    button#clear:hover {
+      background-color: #ff0019;
+      border-color: #000000;
+      color: #fff;
+    }
+    .result {
+      margin-top: 0.8rem;
+      font-size: 1rem;
+      line-height: 1.3;       
+      border-top: 1px dashed #fff;
+      padding-top: 0.75rem;
+      color: #eee;
+    }
+    .muted {
+      color: #bbb;
+      opacity: 0.7;
+      font-size: 0.85rem;
+    }
+    footer {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: #bbb;
+      opacity: 0.85;
+    }
+    @media (max-width: 420px) {
+      .row {
+        flex-direction: column;
+      }
+    }

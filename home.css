@@ -1,0 +1,84 @@
+	body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: black;
+        color: white;
+    }
+    .navbar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #000000;
+        height: 60px;
+    }
+
+    .navbar-left, .navbar-right {
+        display: flex;
+        align-items: center;
+        margin-left: 0; 
+    }
+
+    .navbar-left img {
+        width: 25px;
+        margin-right: 15px;
+    }
+
+    .navbar-links {
+        display: flex;
+        gap: 60px;
+    }
+
+    .navbar-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 20px;
+    }
+    .navbar-links a:hover {
+        color: rgb(2, 150, 0);
+    }
+    .main {
+        display: flex;
+        height: calc(100vh - 50px);
+    }
+
+    .left-side {
+        flex: 1;
+        background: url(FoodGarden.jpg) center/cover no-repeat;
+        position: relative;
+    }
+    .right-side {
+        background-color: rgb(24, 24, 24);
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 400px;
+    }
+
+    .right-side h3 {
+        font-size: 14px;
+        color: #999;
+        margin-bottom: 10px;
+    }
+
+    .right-side h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    .right-side button {
+        background: none;
+        border: 1px solid rgb(255, 255, 255);
+        padding: 10px 20px;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 10px;
+    }
+    .right-side button a {
+        text-decoration: none;
+        color: rgb(255, 255, 255);
+    }
+    .right-side button:hover {
+        background-color: rgb(2, 150, 0);
+    }

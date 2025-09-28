@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Garden Area Calculator</title>
+  <link rel="stylesheet" href="areacalculator.css">
+</head>
+<body>
+  <div class="navbar">
+    <div class="navbar-left">
+      <div class="navbar-links">
+        <a href="home.html">Home</a>
+        <a href="Services.html">Services</a>
+        <a href="About.html">About</a>
+        <a href="Contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-wrapper">
+    <main class="card" role="main">
+      <h1>Garden Area Calculator</h1>
+      <p class="lead">Enter the width and length of your garden in <strong>metres</strong>.</p>
+
+      <div class="row">
+        <div class="col">
+          <label for="width">Width (m)</label>
+          <input id="width" type="number" min="0" step="0.01" placeholder="e.g. 3.5" inputmode="decimal" />
+        </div>
+        <div class="col">
+          <label for="length">Length (m)</label>
+          <input id="length" type="number" min="0" step="0.01" placeholder="e.g. 5" inputmode="decimal" />
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="calc">Calculate Area</button>
+        <button id="clear" class="secondary" type="button">Clear</button>
+      </div>
+
+      <div class="result" id="result" aria-live="polite">
+        <div class="muted">Area: —</div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const widthEl = document.getElementById('width');
+    const lengthEl = document.getElementById('length');
+    const calcBtn = document.getElementById('calc');
+    const clearBtn = document.getElementById('clear');
+    const resultEl = document.getElementById('result');
+
+    function formatNumber(n) {
+      if (!Number.isFinite(n)) return '—';
+      return Number(n.toFixed(2));
+    }
+
+    function estimatePeople(area) {
+      if (area < 75) return 'Estimated to feed less than 5 people per season';
+      if (area >= 75 && area < 150) return 'Estimated to feed 5 people per season';
+      if (area >= 150 && area < 225) return 'Estimated to feed 10 people per season';
+      if (area >= 225 && area < 300) return 'Estimated to feed 15 people per season';
+      if (area >= 300 && area < 450) return 'Estimated to feed 20 people per season';
+      if (area >= 450 && area < 600) return 'Estimated to feed 30 people per season';
+      if (area >= 600 && area < 750) return 'Estimated to feed 40 people per season';
+      if (area >= 750) return 'Estimated to feed 50 or more people per season';
+      return '';
+    }
+
+    function showResult(area) {
+      if (area === null) {
+        resultEl.innerHTML = '<div class="muted">Area: —</div>';
+        return;
+      }
+      const areaFormatted = formatNumber(area);
+      const peopleEstimate = estimatePeople(area);
+      resultEl.innerHTML = `<div><strong>Area:</strong> ${areaFormatted} m²</div><div>${peopleEstimate}</div>`;
+    }
+
+    function calculate() {
+      const w = parseFloat(widthEl.value);
+      const l = parseFloat(lengthEl.value);
+      if (Number.isNaN(w) || Number.isNaN(l)) {
+        resultEl.innerHTML = '<div style="color:#fff"><strong>Error:</strong> Please enter both width and length as numbers (≥ 0).</div>';
+        return;
+      }
+      if (w < 0 || l < 0) {
+        resultEl.innerHTML = '<div style="color:#fff"><strong>Error:</strong> Values must be 0 or greater.</div>';
+        return;
+      }
+      const area = w * l;
+      showResult(area);
+    }
+
+    calcBtn.addEventListener('click', calculate);
+    clearBtn.addEventListener('click', () => {
+      widthEl.value = '';
+      lengthEl.value = '';
+      showResult(null);
+      widthEl.focus();
+    });
+
+    [widthEl, lengthEl].forEach(el => {
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') calculate();
+      });
+    });
+
+    showResult(null);
+  </script>
+</body>
+</html>

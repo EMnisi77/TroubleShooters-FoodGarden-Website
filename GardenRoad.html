@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garden Roadmap Selector</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: black;
+        color: white;
+        text-align: center;
+    }
+    .navbar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #000000;
+        height: 60px;
+    }
+    .navbar-left {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-left: 0;
+    }
+    .navbar-left img {
+        width: 25px;
+    }
+    .navbar-links {
+        display: flex;
+        gap: 60px;
+    }
+    .navbar-links a {
+        text-decoration: none;
+        color: white;
+        font-size: 20px;
+    }
+    .navbar-links a:hover {
+        color: rgb(2, 150, 0);
+    }
+    .navbar-right {
+        display: none;
+        align-items: center;
+        gap: 15px;
+    }
+
+    /* Button styles */
+    .garden-buttons {
+        margin: 30px 0;
+    }
+    .garden-buttons button {
+        background-color: rgb(2, 150, 0);
+        border: none;
+        color: white;
+        padding: 12px 20px;
+        margin: 10px;
+        font-size: 18px;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+    }
+    .garden-buttons button:hover {
+        background-color: rgb(3, 100, 0);
+    }
+    .content {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: left;
+    }
+    .content img {
+        width: 70%;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+    h2 {
+        color: rgb(2, 150, 0);
+    }
+    h3 {
+        margin-top: 20px;
+        color: #ccc;
+    }
+    ul {
+        margin-left: 20px;
+    }
+</style>
+</head>
+<body>
+<div class="navbar">
+    <div class="navbar-left">
+        <div class="navbar-links">
+            <a href="home.html">Home</a>
+            <a href="Services.html">Services</a>
+            <a href="About.html">About</a>
+            <a href="Contact.html">Contact</a>
+        </div>
+    </div>
+</div>
+<h1>Food Garden <span style="color: rgb(0, 235, 0);">Roadmaps</span> 🪴🗺️</h1>
+<p>Discover the essential steps to grow your own food garden</p>
+<div class="garden-buttons">
+    <button onclick="showGarden('vegetable')">Vegetable Garden</button>
+    <button onclick="showGarden('fruit')">Fruit Garden</button>
+    <button onclick="showGarden('mixed')">Mixed Garden</button>
+</div>
+<div id="garden-content" class="content"></div>
+<script>
+    const gardenData = {
+        vegetable: {
+            title: "Vegetable Garden Roadmap",
+            image: "Vegetable_Garden.jpg",
+            roadmap: `
+                <h3>Stage 1 – Planning</h3>
+                <ul>
+                    <li>Choose a sunny spot (6–8 hrs/day).</li>
+                    <li>Start small: 2×3 m bed or 4–6 raised beds.</li>
+                    <li>Pick crops for your season (tomatoes, spinach, carrots).</li>
+                    <li>Sketch layout: group by water/light needs.</li>
+                </ul>
+                <h3>Stage 2 – Preparation</h3>
+                <ul>
+                    <li>Remove weeds & debris; test pH (6.0–7.0).</li>
+                    <li>Add compost or aged manure.</li>
+                    <li>Build raised beds for better drainage.</li>
+                </ul>
+                <h3>Stage 3 – Planting</h3>
+                <ul>
+                    <li>Direct sow beans, lettuce; transplant tomatoes & peppers.</li>
+                    <li>Follow spacing guidelines on seed packets.</li>
+                    <li>Mulch to keep moisture & suppress weeds.</li>
+                </ul>
+                <h3>Stage 4 – Maintenance</h3>
+                <ul>
+                    <li>Deep water 2–3 times/week.</li>
+                    <li>Weed weekly; use natural pest deterrents.</li>
+                    <li>Fertilize every 3–4 weeks if needed.</li>
+                </ul>
+                <h3>Stage 5 – Harvesting</h3>
+                <ul>
+                    <li>Pick regularly to encourage growth.</li>
+                    <li>Store or process quickly.</li>
+                </ul>
+            `
+        },
+        fruit: {
+            title: "Fruit Garden Roadmap",
+            image: "Fruit_Garden.jpg",
+            roadmap: `
+                <h3>Stage 1 – Planning</h3>
+                <ul>
+                    <li>Choose trees (apple, mango), bushes (blueberry), vines (grape).</li>
+                    <li>Match climate; ensure space (trees 3–5 m apart).</li>
+                    <li>Plan for pollination if needed.</li>
+                </ul>
+                <h3>Stage 2 – Preparation</h3>
+                <ul>
+                    <li>Loosen soil deeply; add compost.</li>
+                    <li>Ensure drainage; set up trellises for vines.</li>
+                </ul>
+                <h3>Stage 3 – Planting</h3>
+                <ul>
+                    <li>Plant bare-root in dormant season; potted anytime outside extremes.</li>
+                    <li>Mulch 5–8 cm but keep off trunk.</li>
+                </ul>
+                <h3>Stage 4 – Maintenance</h3>
+                <ul>
+                    <li>Deep water weekly in dry spells.</li>
+                    <li>Prune in winter for shape & airflow.</li>
+                    <li>Fertilize in spring and after fruiting.</li>
+                </ul>
+                <h3>Stage 5 – Harvesting</h3>
+                <ul>
+                    <li>Check ripeness by taste & ease of picking.</li>
+                    <li>Refrigerate or preserve promptly.</li>
+                </ul>
+            `
+        },
+        mixed: {
+            title: "Mixed Garden Roadmap",
+            image: "Mixed_Garden.jpeg",
+            roadmap: `
+                <h3>Stage 1 – Planning</h3>
+                <ul>
+                    <li>Zone 1: Fast veggies near kitchen.</li>
+                    <li>Zone 2: Fruit bushes along borders.</li>
+                    <li>Zone 3: Trees at far end to avoid shading.</li>
+                    <li>Use companion planting (e.g., strawberries under trees).</li>
+                </ul>
+                <h3>Stage 2 – Preparation</h3>
+                <ul>
+                    <li>Vegetable soil: nutrient-rich with compost.</li>
+                    <li>Fruit zones: well-drained with organic matter.</li>
+                    <li>Install separate drip irrigation lines.</li>
+                </ul>
+                <h3>Stage 3 – Planting</h3>
+                <ul>
+                    <li>Plant perennials (fruit) first, then annual veggies.</li>
+                    <li>Leave access paths for maintenance.</li>
+                </ul>
+                <h3>Stage 4 – Maintenance</h3>
+                <ul>
+                    <li>Veggies: water 2–3 times/week; Trees: deep water weekly.</li>
+                    <li>Use flowers like marigolds for pest control.</li>
+                    <li>Compost veggie beds each season.</li>
+                </ul>
+                <h3>Stage 5 – Harvesting</h3>
+                <ul>
+                    <li>Harvest veggies weekly; fruits seasonally.</li>
+                    <li>Succession plant to keep beds productive.</li>
+                </ul>
+            `
+        }
+    };
+
+    function showGarden(type) {
+        const garden = gardenData[type];
+        document.getElementById("garden-content").innerHTML = `
+            <h2>${garden.title}</h2>
+            <img src="${garden.image}" alt="${garden.title}">
+            ${garden.roadmap}
+        `;
+    }
+</script>
+<script> window.chtlConfig = { chatbotId: "9425415424" } </script>
+<script async data-id="9425415424" id="chtl-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
+</body>
+</html>
